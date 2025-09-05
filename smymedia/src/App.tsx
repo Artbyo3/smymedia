@@ -1202,11 +1202,11 @@ const DiscoverPage = () => {
   // Check if movie API is available (for future integration)
   const checkMovieApiAvailability = () => {
     try {
-      // This will throw an error if API keys are not configured
-      const tmdbKey = import.meta.env.VITE_TMDB_API_KEY;
-      const omdbKey = import.meta.env.VITE_OMDB_API_KEY;
+      // Check if API keys are configured without exposing them
+      const hasTmdbKey = !!import.meta.env.VITE_TMDB_API_KEY;
+      const hasOmdbKey = !!import.meta.env.VITE_OMDB_API_KEY;
       
-      if (!tmdbKey && !omdbKey) {
+      if (!hasTmdbKey && !hasOmdbKey) {
         setApiError('Movie API not configured. See API_SETUP.md for instructions.');
       } else {
         setApiError(null);
@@ -1243,24 +1243,6 @@ const DiscoverPage = () => {
             </div>
           )}
           
-          {/* Debug Info - Remove this after fixing */}
-          <div className="mt-4 p-4 bg-blue-500/20 border border-blue-500/30 rounded-xl text-blue-200">
-            <p className="text-sm">
-              <strong>🔍 Debug Info:</strong>
-            </p>
-            <p className="text-xs mt-2 opacity-80">
-              TMDB Key: {import.meta.env.VITE_TMDB_API_KEY ? `${import.meta.env.VITE_TMDB_API_KEY.substring(0, 8)}...` : 'NOT FOUND'}
-            </p>
-            <p className="text-xs opacity-80">
-              Environment: {import.meta.env.MODE} | Dev: {import.meta.env.DEV ? 'Yes' : 'No'}
-            </p>
-            <p className="text-xs opacity-80">
-              All Env Vars: {JSON.stringify(Object.keys(import.meta.env).filter(key => key.startsWith('VITE_')))}
-            </p>
-            <p className="text-xs opacity-80">
-              Raw TMDB Value: {import.meta.env.VITE_TMDB_API_KEY || 'undefined'}
-            </p>
-          </div>
         </div>
 
         {/* Search and Filters */}
