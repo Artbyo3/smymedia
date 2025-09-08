@@ -124,7 +124,7 @@ function App() {
                 <div className="w-8 h-8 bg-gradient-to-r from-purple-500 to-pink-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">
                   M
                 </div>
-                <h1 className="text-white font-bold text-lg">MediaVault</h1>
+                <h1 className="text-white font-bold text-lg">SMYMEDIA</h1>
               </div>
             )}
             <button
